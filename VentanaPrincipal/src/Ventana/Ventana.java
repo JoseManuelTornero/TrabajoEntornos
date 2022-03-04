@@ -11,6 +11,9 @@ import javax.swing.JLabel;
 import javax.swing.JMenuItem;
 import javax.swing.JButton;
 import javax.swing.JMenu;
+import java.awt.CardLayout;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Ventana extends JFrame {
 
@@ -48,19 +51,50 @@ public class Ventana extends JFrame {
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem david = new JMenuItem("David");
+		david.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaDavid d = new VentanaDavid();
+				nuevoPanel(d);
+			}
+		});
 		mnNewMenu.add(david);
 		
 		JMenuItem jose= new JMenuItem("José");
+		jose.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaJosito j = new VentanaJosito();
+				nuevoPanel(j);
+			}
+		});
 		mnNewMenu.add(jose);
 		
 		JMenuItem andres = new JMenuItem("Andrés");
+		andres.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaAndres a = new VentanaAndres();
+				nuevoPanel(a);
+			}
+		});
 		mnNewMenu.add(andres);
 		
-		JMenuItem cheetos = new JMenuItem("Cheetos");
+		JMenuItem cheetos = new JMenuItem("Jos\u00E9 Manuel");
+		cheetos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				VentanaJosema jm = new VentanaJosema();
+				nuevoPanel(jm);
+			}
+		});
 		mnNewMenu.add(cheetos);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new CardLayout(0, 0));
+	}
+	
+	public void nuevoPanel(JPanel panelActual){
+		contentPane.removeAll();
+		contentPane.add(panelActual);
+		contentPane.repaint();
+		contentPane.revalidate();
 	}
 }
